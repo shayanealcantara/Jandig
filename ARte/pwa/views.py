@@ -14,6 +14,8 @@ def index(request):
                 Marker(patt="tokusatsu", gif="tokusatsu"),
                 Marker(patt="samurai", gif="samurai", scale="1.5 1.5"),
                 Marker(patt="antipodas", gif="antipodas"), # Blinking
+                Marker(patt="flyingsaucer", gif="flyingsaucer", scale="1.5 1"), # Blinking
+                Marker(patt="manekineko", gif="manekineko"),
 
                 # Marker(patt="hiro", gif="none"),
                 # {"patt":"peixe", "image":"peixe"},
@@ -23,7 +25,6 @@ def index(request):
                 # {"patt":"robo3dvoando", "image":"robo3dvoando"},
                 # {"patt":"saucer", "image":"saucer"},
                 # {"patt":"flyingsaucer", "image":"andando"},
-                # {"patt":"manekineko", "image":"robo-rodas"},
 
                 # {"patt":"janela", "image":"janela"}, # Gif bugging
                     # {"patt":"binoculos", "image":"janela"}, Not Working
