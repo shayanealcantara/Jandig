@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'sslserver',
     'pwa',
     'django_distill',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
