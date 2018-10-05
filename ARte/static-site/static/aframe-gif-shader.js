@@ -479,48 +479,48 @@
 	   * @public
 	   */
 	  nextFrame: function nextFrame() {
-	    this.__draw();
-
+			this.__draw();
 	    /* update next frame time */
 	    while (Date.now() - this.__startTime >= this.__nextFrameTime) {
-
-	      this.__nextFrameTime += this.__delayTimes[this.__frameIdx++];
+				
+				this.__nextFrameTime += this.__delayTimes[this.__frameIdx++];
 	      if ((this.__infinity || this.__loopCnt) && this.__frameCnt <= this.__frameIdx) {
-	        /* go back to the first */
+					/* go back to the first */
 	        this.__frameIdx = 0;
 	      }
-	    }
+			}
+			
 	  },
-
-
+		
+		
 	  /*==============================
-	   =            canvas            =
-	   ==============================*/
-
+		=            canvas            =
+		==============================*/
+		
 	  /**
-	   * clear canvas
-	   * @private
+		 * clear canvas
+		 * @private
 	   */
-	  __clearCanvas: function __clearCanvas() {
-	    this.__ctx.clearRect(0, 0, this.__width, this.__height);
-	    this.__texture.needsUpdate = true;
+		__clearCanvas: function __clearCanvas() {
+			  this.__ctx.clearRect(0, 0, this.__width, this.__height);
+				this.__texture.needsUpdate = true;
 	  },
-
-
+		
+		
 	  /**
-	   * draw
-	   * @private
+		 * draw
+		 * @private
 	   */
-	  __draw: function __draw() {
-	    
-	     this.__clearCanvas(); this.__ctx.drawImage(this.__frames[this.__frameIdx], 0, 0, this.__width, this.__height); this.__texture.needsUpdate = true;
-	  },
-
-
+		__draw: function __draw() {
+			this.__clearCanvas(); 
+			this.__ctx.drawImage(this.__frames[this.__frameIdx], 0, 0, this.__width, this.__height); 
+		},
+		
+		
 	  /*============================
 	  =            ready            =
 	  ============================*/
-
+		
 	  /**
 	   * setup gif animation and play if autoplay is true
 	   * @private
