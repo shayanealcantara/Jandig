@@ -21,8 +21,8 @@ def index(request):
             Artwork(patt="robo-rodas", gif="robo-rodas", scale="1 1.5"),
             Artwork(patt="tokusatsu", gif="tokusatsu"),
             Artwork(patt="samurai", gif="samurai", scale="1.5 1.5"),
-            Artwork(patt="antipodas", gif="antipodas"), # Blinking
-            Artwork(patt="flyingsaucer", gif="flyingsaucer", scale="1.5 1"), # Blinking
+            Artwork(patt="antipodas", gif="antipodas"),
+            Artwork(patt="flyingsaucer", gif="flyingsaucer", scale="1.5 1"),
             Artwork(patt="manekineko", gif="manekineko"),
 
                 # {"patt":"peixe", "image":"peixe"},
