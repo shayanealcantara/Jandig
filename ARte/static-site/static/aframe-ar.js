@@ -8554,12 +8554,6 @@ AFRAME.registerSystem('arjs', {
 				if( arProfile.contextParameters.trackingBackend !== 'tango' ){
 					arSource.copyElementSizeTo(document.body)
 				}
-
-				// fixing a-frame css
-				var buttonElement = document.querySelector('.a-enter-vr')
-				if( buttonElement ){
-					buttonElement.style.position = 'fixed'
-				}
 			}
 
 
