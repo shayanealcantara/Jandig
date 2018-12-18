@@ -6661,14 +6661,6 @@ ARjs.Anchor = function(arSession, markerParameters){
 var ARjs = ARjs || {}
 
 /**
- * url for the markers-area learner. if not set, take the default one
- * @type {String}
- */
-ARjs.AnchorDebugUI.MarkersAreaLearnerURL = null
-// @namespace
-var ARjs = ARjs || {}
-
-/**
  * Create an anchor in the real world
  * 
  * @param {ARjs.Session} arSession - the session on which we create the anchor
