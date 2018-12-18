@@ -24,8 +24,8 @@ def index(request):
             Artwork(patt="antipodas", gif="antipodas"),
             Artwork(patt="flyingsaucer", gif="flyingsaucer", scale="1.5 1"),
             Artwork(patt="manekineko", gif="manekineko"),
+            Artwork(patt="peixe", gif="peixe"),
 
-                # {"patt":"peixe", "image":"peixe"},
                 # {"patt":"andando", "image":"andando"},
                 # {"patt":"robo-pula", "image":"robo-pula"},
                 # {"patt":"robo3dandando", "image":"robo3dandando"},
