@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link id="manifest" rel="manifest" href="static/manifest.json">
+        <script src="static/js/detect.js"></script>
+        <script src="static/js/main.js"></script>
+        <script src="static/aframe.js"></script>
+        <script src="static/aframe-ar.js"> </script>
+        <script src="static/gifuct-js.js"></script>
+        <script src="static/gif-component.js"></script>
+        <script src="static/pwacompat.js"></script>
+    </head>
+
+    <body style='margin : 0px; overflow: hidden;'>
+        
+            
+
+    <a-scene embedded arjs>
+        
+        
+            
+                <a-marker id= "hiro" type="pattern" preset="hiro">
+                     <a-entity id="hiro-gif" gif="src: /static/images/silly_walk.gif;
+                                                            marker: #hiro;
+                                                            scale: 1 1;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+            
+                <a-marker id="gueixa" type="pattern" url="/static/patts/gueixa.patt">
+                    <a-entity id="gueixa-gif" gif="src: /static/images/gueixa.gif;
+                                                            marker: #gueixa;
+                                                            scale: 1 1;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+            
+                <a-marker id="temaki" type="pattern" url="/static/patts/temaki.patt">
+                    <a-entity id="temaki-gif" gif="src: /static/images/temaki.gif;
+                                                            marker: #temaki;
+                                                            scale: 1 1;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+            
+                <a-marker id="robo-rodas" type="pattern" url="/static/patts/robo-rodas.patt">
+                    <a-entity id="robo-rodas-gif" gif="src: /static/images/robo-rodas.gif;
+                                                            marker: #robo-rodas;
+                                                            scale: 1 1.5;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+            
+                <a-marker id="tokusatsu" type="pattern" url="/static/patts/tokusatsu.patt">
+                    <a-entity id="tokusatsu-gif" gif="src: /static/images/tokusatsu.gif;
+                                                            marker: #tokusatsu;
+                                                            scale: 1 1;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+            
+                <a-marker id="samurai" type="pattern" url="/static/patts/samurai.patt">
+                    <a-entity id="samurai-gif" gif="src: /static/images/samurai.gif;
+                                                            marker: #samurai;
+                                                            scale: 1.5 1.5;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+            
+                <a-marker id="antipodas" type="pattern" url="/static/patts/antipodas.patt">
+                    <a-entity id="antipodas-gif" gif="src: /static/images/antipodas.gif;
+                                                            marker: #antipodas;
+                                                            scale: 1 1;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+            
+                <a-marker id="flyingsaucer" type="pattern" url="/static/patts/flyingsaucer.patt">
+                    <a-entity id="flyingsaucer-gif" gif="src: /static/images/flyingsaucer.gif;
+                                                            marker: #flyingsaucer;
+                                                            scale: 1.5 1;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+            
+                <a-marker id="manekineko" type="pattern" url="/static/patts/manekineko.patt">
+                    <a-entity id="manekineko-gif" gif="src: /static/images/manekineko.gif;
+                                                            marker: #manekineko;
+                                                            scale: 1 1;
+                                                            rotation: 270 0 0;
+                                                            position: 0 0 0;">
+                    </a-entity>
+                </a-marker>
+            
+        
+
+        <a-entity camera></a-entity>         
+    </a-scene>
+
+
+        
+    </body>
+</html>

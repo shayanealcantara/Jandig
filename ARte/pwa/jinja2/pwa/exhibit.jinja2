@@ -7,7 +7,7 @@
         {% for artwork in artworks %}
             {% if artwork.patt == "hiro" %}
                 <a-marker id= "{{artwork.patt}}" type="pattern" preset="{{artwork.patt}}">
-                     <a-entity id="{{artwork.patt}}-gif" gif="src: static/images/{{artwork.gif}}.gif;
+                     <a-entity id="{{artwork.patt}}-gif" gif="src: /static/images/{{artwork.gif}}.gif;
                                                             marker: #{{artwork.patt}};
                                                             scale: {{artwork.scale}};
                                                             rotation: {{artwork.rotation}};
@@ -15,8 +15,8 @@
                     </a-entity>
                 </a-marker>
             {% else %}
-                <a-marker id="{{artwork.patt}}" type="pattern" url="static/patts/{{artwork.patt}}.patt">
-                    <a-entity id="{{artwork.patt}}-gif" gif="src: static/images/{{artwork.gif}}.gif;
+                <a-marker id="{{artwork.patt}}" type="pattern" url="/static/patts/{{artwork.patt}}.patt">
+                    <a-entity id="{{artwork.patt}}-gif" gif="src: /static/images/{{artwork.gif}}.gif;
                                                             marker: #{{artwork.patt}};
                                                             scale: {{artwork.scale}};
                                                             rotation: {{artwork.rotation}};
