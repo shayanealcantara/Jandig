@@ -15,7 +15,6 @@ def service_worker(request):
 def index(request):
     ctx = {
         "artworks":[
-            Artwork(patt="hiro", gif="silly_walk"),
             Artwork(patt="gueixa", gif="gueixa"),
             Artwork(patt="temaki", gif="temaki"),
             Artwork(patt="robo-rodas", gif="robo-rodas", scale="1 1.5"),
