@@ -77,10 +77,11 @@
             await axios.get(exhibit_url)
 
             for(let i = 0; i < data.length; i++) {
-                await axios.get(`/media/${data[i].link}`).
+                const storage = await axios.get(`/media/${data[i].link}`).
                     catch(error => {
                         console.log(error)
                     })
+                console.log(storage)
             }
         }
     </script>
