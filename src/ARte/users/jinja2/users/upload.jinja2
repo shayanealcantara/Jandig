@@ -39,10 +39,30 @@
                         </p>     
                         <h3>{{ _("Choose Marker image") }}</h3>
                     {% endif %}
+                    <div class='upload'>
+                        <label id='buttonUpload' for='fileinput' class=''>
+                            Upload Marker
+                            <input id='fileinput' type='file'>
+                        </label>
+        <div id='imageContainer'></div>
+    <div id='topRightButtons'>
+        <button id="show-info" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+            <i class="material-icons">info_outline</i>
+        </button>
+    </div>
+                        <dialog style='width:400px' id='dialog-info' class="mdl-dialog">
+                            <h4 class="mdl-dialog__title">Welcome!</h4>
+                            <div class="mdl-dialog__content">
+                                Details on how to pick the inner image can be found <a target='_blank' href='https://artoolkit.org/documentation/doku.php?id=3_Marker_Training:marker_training'>here</a>
+                            </div>
+                            <div class="mdl-dialog__actions">
+                                <button type="button" class="mdl-button">OK</button>
+                            </div>
+                        </dialog>
+                    </div>
                         {{ form.visible_fields()[0] }}
                         {{ form.visible_fields()[0].errors }}
                     </p>
-
                     {# TO BE IMPLEMENTED - SLIDERS TO CHOOSE OBJECT SCALE AND POSITION #}
                     {# <input ... type = 'range'... #}
 
@@ -105,8 +125,12 @@
             </div>
         </section>
 
-        <script>
+        {% block scripts %}
+        <script src="/static/js/threex-arpatternfile.js">
+        <script src="/static/js/pdfGenerator.js">
+        {% endblock %}
 
+        <script>
             $('#agreement-chk').click(function(){
                 if($(this).prop('checked') == true){
                     $('input[type="submit"]').prop('disabled', false);
@@ -192,8 +216,6 @@
                 $('#id_rotation').val(rot);
                 $('#id_position').val(pos);
             }
-
-                            
         </script>
     </section>
 {% endblock %}

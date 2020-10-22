@@ -1,8 +1,11 @@
+
+
 var dialogElement = document.querySelector('#dialog-info')
 
 if (!dialogElement.showModal) {
     //    dialogElementPolyfill.registerDialog(dialogElement)
 }
+
 
 dialogElement.querySelector('.mdl-dialog__actions button').addEventListener('click', function() {
     dialogElement.close()
@@ -61,7 +64,9 @@ document.querySelector('#buttonDownloadFullImage').addEventListener('click', fun
 document.querySelector('#fileinput').addEventListener('change', function() {
     var file = this.files[0];
     // debugger
+    console.log("AQUI DEU BOM, MEU CHAPA")
 
+    alert("AQUI DEU BOM, MEU CHAPA")
     var reader = new FileReader();
     reader.onload = function(event) {
         innerImageURL = event.target.result
