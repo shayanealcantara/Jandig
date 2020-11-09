@@ -42,4 +42,25 @@
             </div>
         </div>
     </div>
+    <p>
+		<img src="" id="img1" border="0" />
+	</p>
+	<button type="button" id="btnScreenshot">Screenshot</button>
+	<script>
+		$(document).ready(function()
+		{
+			$("#btnScreenshot").on('click', function(e)
+			{
+				html2canvas(document.body).then(function(canvas) {
+
+    var base64image = canvas.toDataURL("image/png");
+
+    // Open the image in a new window
+    window.open(base64image , "_blank");
+});
+	  				}			
+	  			});
+			});	
+		});	
+	</script>
 {% endblock %}
