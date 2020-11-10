@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from .views import *
 
 from .forms import LoginForm
 from .views import download_exhibit, edit_object, signup, recover_password, recover_edit_password, invalid_recovering_email, recover_code, wrong_verification_code, profile, marker_upload, object_upload, create_artwork, create_exhibit, edit_artwork, element_get, edit_exhibit, edit_profile, edit_password, delete, related_content, mod_delete, permission_denied, mod
@@ -13,6 +14,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('recover/', recover_password, name='recover'),
     path('recover-code/', recover_code, name='recover-code'),
+
+    path('api/save_screenshot', SaveScreenshot.as_view(), name='save-screenshot'),
 
     path('profile/', profile, name='profile'),
     path('profile/edit/', edit_profile, name="edit-profile"),

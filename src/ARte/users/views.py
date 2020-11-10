@@ -18,11 +18,15 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.views.decorators.cache import cache_page
 
-
 from .forms import SignupForm, RecoverPasswordCodeForm, RecoverPasswordForm, UploadMarkerForm, UploadObjectForm, ArtworkForm, ExhibitForm, ProfileForm, PasswordChangeForm
 from .models import Marker, Object, Artwork, Profile
 from core.models import Exhibit
 from core.helpers import *
+from rest_framework.generics import CreateAPIView 
+
+class SaveScreenshot(CreateAPIView):
+    serializer_class = ScreenshotCreateSerializer
+    permission_classes = [AllowAny]
 
 def signup(request):
 

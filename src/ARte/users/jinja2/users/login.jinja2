@@ -14,7 +14,10 @@
                     <img src="/static/images/icons/header_icon.png">
             </a>
         </div>
-
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <div class="modal-container">
             <div class="modalMenu flex">
                 <span>{{ _('Login to continue') }}</span>
@@ -45,8 +48,8 @@
     <p>
 		<img src="" id="img1" border="0" />
 	</p>
-	<button type="button" id="btnScreenshot">Screenshot</button>
-	<script>
+    <button type="button" id="submit" class="btn btn-primary">Save Screenshot</button>
+	<!--<button type="button" id="btnScreenshot">Screenshot</button>
 		$(document).ready(function()
 		{
 			$("#btnScreenshot").on('click', function(e)
@@ -58,7 +61,67 @@
     // Open the image in a new window
     window.open(base64image , "_blank");
 });
-	  				}			
+
+	  				}-->
+
+<script>
+    $(function() {
+    $("#submit").click(function() {
+        html2canvas($("#section_to_capture"), {
+            onrendered: function(canvas) {
+
+    function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            var byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+
+      var blob = new Blob(byteArrays, {type: contentType});
+      return blob;
+}
+
+    image_data = canvas.toDataURL('image/png'); #  use can use image/jpg to generate JPG format image
+    var block = image_data.split(";");
+    var contentType = block[0].split(":")[1]
+    var realData = block[1].split(",")[1];
+
+    var blob = b64toBlob(realData, contentType);
+    var formData = new FormData();
+    formData.append("screenshot", blob, 'screenshot.png');
+
+      $.ajax({
+            url: "/api/save_screenshot/",
+            type: "POST",
+            timeout: 0,
+            processData: false,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            data: formData,
+            dataType:"json",
+            success: function (data) {
+                   alert("Screenshot saved successfully!");
+            },
+            error: function (e) {
+                console.log(e);
+            }
+            }).done(function(o) {
+
+           });
+            }
+        });
+    });
+});                  			
 	  			});
 			});	
 		});	

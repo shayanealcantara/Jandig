@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.core.files.storage import default_storage
-import re
 
 from .choices import COUNTRY_CHOICES
 
@@ -17,6 +16,8 @@ class Profile(models.Model):
         permissions = [
             ("moderator", "Can moderate content"),
         ]
+class Screenshot(models.Model):
+    screenshot = models.ImageField(upload_to='img/screenshots/', help_text='Html2canvas screenshot')
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
