@@ -1,0 +1,90 @@
+
+@startuml
+
+Package (USERS) {
+ Class (Profile) {
+  #user - PK?
+  +bio
+  +country
+  +personal_site
+}
+
+Class (Marker) {
+  #owner - FK
+  +source
+  +uploaded_at
+  +Author
+  +title
+  +patt
+}
+
+Class (Objects) {
+  #owner - FK
+  +source
+  +uploaded_at
+  +author
+  +title
+  +scale
+  +position
+  +rotation
+}
+
+Class (Artwork) {
+  #author - FK
+  #marker - FK
+  #augmented - FK
+  +title
+  +description
+  +created_at
+}
+}
+ Package CORE{
+  Class (Artwork2) {
+  +name;
+  +patt;
+ +gif
+  +scale
+  +position
+  +rotation
+}
+Class (Exhibit){  
+  #owner - Fk
+  +name
+  +slug
+  +artworks
+  +creation_date
+}
+ Class (Marker) {
+  #owner - FK
+  + source
+  +uploaded_at
+  +Author
+  +title
+  +patt
+}
+Class (Objects) {
+  #owner - FK
+  + source
+  +uploaded_at
+  +author
+  +title
+  +scale
+  +position
+  +rotation
+}
+Class (Artwork2) {
+  +title
+  +description
+  +created_at
+}
+}
+
+Marker  "n..n" <-- "n..n" Artwork
+Profile "1..n"<|-- "n..1"Artwork
+Objects "n..n" <|-- "n..n" Artwork
+Profile "n..1" <|-- "1..n" Objects
+Profile "n..n" <|-- "n..n" Marker
+Profile "n..1"<|-- "1..n" Exhibit
+Exhibit "n..n"<|--"n..n" Artwork
+@enduml
+
