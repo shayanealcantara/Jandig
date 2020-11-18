@@ -28,3 +28,38 @@ class Exhibit(models.Model):
     @property
     def date(self):
         return self.creation_date.strftime("%d/%m/%Y")
+
+class Marker(models.Model):
+    owner = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, related_name="profile")
+    source = models.ImageField(upload_to='markers/')
+    uploaded_at = models.DateTimeField(auto_now=True)
+    author = models.CharField(max_length=60, blank=False)
+    title = models.CharField(max_length=60, default='')
+    patt = models.FileField(upload_to='patts/')
+
+    def __str__(self):
+        return self.source.name
+
+    @property
+    def artworks_count(self):
+        return Artwork.objects.filter(marker=self).count()
+
+    @property
+    def artworks_list(self):
+        return Artwork.objects.filter(marker=self)
+
+    @property
+    def exhibits_count(self):
+        from .models import Exhibit
+        return Exhibit.objects.filter(artworks__marker=self).count()
+
+    @property
+    def exhibits_list(self):
+        from .models import Exhibit
+        return Exhibit.objects.filter(artworks__marker=self)
+
+    @property
+    def in_use(self):
+        if self.artworks_count > 0 or self.exhibits_count > 0:
+            return True
+        return False
