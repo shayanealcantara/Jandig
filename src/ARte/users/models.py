@@ -12,7 +12,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     country = models.CharField(max_length=2, choices=COUNTRY_CHOICES, blank=True)
     personal_site = models.URLField()
-    
+
     class Meta:
         permissions = [
             ("moderator", "Can moderate content"),
@@ -27,43 +27,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-class Marker(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.DO_NOTHING)
-    source = models.ImageField(upload_to='markers/')
-    uploaded_at = models.DateTimeField(auto_now=True)
-    author = models.CharField(max_length=60, blank=False)
-    title = models.CharField(max_length=60, default='')
-    patt = models.FileField(upload_to='patts/')
-
-    def __str__(self):
-        return self.source.name
-
-    @property
-    def artworks_count(self):
-        return Artwork.objects.filter(marker=self).count()
-
-    @property
-    def artworks_list(self):
-        return Artwork.objects.filter(marker=self)
-
-    @property
-    def exhibits_count(self):
-        from core.models import Exhibit
-        return Exhibit.objects.filter(artworks__marker=self).count()
-
-    @property
-    def exhibits_list(self):
-        from core.models import Exhibit
-        return Exhibit.objects.filter(artworks__marker=self)
-
-    @property
-    def in_use(self):
-        if self.artworks_count > 0 or self.exhibits_count > 0:
-            return True
-        return False
-
 
 class Object(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.DO_NOTHING)
@@ -161,14 +124,13 @@ class Object(models.Model):
 
 
 @receiver(post_delete, sender=Object)
-@receiver(post_delete, sender=Marker)
 def remove_source_file(sender, instance, **kwargs):
     instance.source.delete(False)
 
 
 class Artwork(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.DO_NOTHING)
-    marker = models.ForeignKey(Marker, on_delete=models.DO_NOTHING)
+    marker = models.ForeignKey('core.Marker', on_delete=models.DO_NOTHING)
     augmented = models.ForeignKey(Object, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=50, blank=False)
     description = models.TextField(max_length=500, blank=True)

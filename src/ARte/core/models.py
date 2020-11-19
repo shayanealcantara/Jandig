@@ -1,6 +1,7 @@
 from django.db import models
-from users.models import Artwork, Profile
 from datetime import datetime
+from django.dispatch import receiver
+from django.db.models.signals import post_save, post_delete
 import urllib
 
 class Artwork2(models.Model):
@@ -12,10 +13,10 @@ class Artwork2(models.Model):
     rotation = models.CharField(default="270 0 0", max_length=50)
 
 class Exhibit(models.Model):
-    owner = models.ForeignKey(Profile,on_delete=models.DO_NOTHING,related_name="exhibits")
+    owner = models.ForeignKey('users.Profile',on_delete=models.DO_NOTHING,related_name="exhibits")
     name = models.CharField(unique=True, max_length=50)
     slug = models.CharField(unique=True, max_length=50)
-    artworks = models.ManyToManyField(Artwork,related_name="exhibits")
+    artworks = models.ManyToManyField('users.Artwork',related_name="exhibits")
     creation_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -30,7 +31,7 @@ class Exhibit(models.Model):
         return self.creation_date.strftime("%d/%m/%Y")
 
 class Marker(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, related_name="profile")
+    owner = models.ForeignKey('users.Profile', on_delete=models.DO_NOTHING, related_name="markers")
     source = models.ImageField(upload_to='markers/')
     uploaded_at = models.DateTimeField(auto_now=True)
     author = models.CharField(max_length=60, blank=False)
@@ -63,3 +64,7 @@ class Marker(models.Model):
         if self.artworks_count > 0 or self.exhibits_count > 0:
             return True
         return False
+
+@receiver(post_delete, sender=Marker)
+def remove_source_file(sender, instance, **kwargs):
+    instance.source.delete(False)
